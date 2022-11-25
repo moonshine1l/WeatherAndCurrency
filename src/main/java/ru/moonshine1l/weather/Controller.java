@@ -2,6 +2,7 @@ package ru.moonshine1l.weather;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -20,23 +21,19 @@ public class Controller {
 
     public static final Logger logger = Logger.getGlobal();
 
-    @FXML
-    private ResourceBundle resources;
 
-    @FXML
-    private URL location;
 
     @FXML
     private TextField city;
 
     @FXML
-    private Text currency;
+    private Text dollar;
+
+    @FXML
+    private Text euro;
 
     @FXML
     private Button getData;
-
-    @FXML
-    private AnchorPane scene;
 
     @FXML
     private Text tempInfo;
@@ -62,8 +59,8 @@ public class Controller {
         if (!cur.isEmpty()) {
             JSONObject currencyData = new JSONObject(cur);
 
-            currency.setText("Текущий курс: " + currencyData.getJSONObject("Valute").getJSONObject("EUR").getDouble("Value") + "€ " +
-                    "" + currencyData.getJSONObject("Valute").getJSONObject("USD").getDouble("Value") + "$");
+            dollar.setText(currencyData.getJSONObject("Valute").getJSONObject("USD").getDouble("Value") + " руб");
+            euro.setText(currencyData.getJSONObject("Valute").getJSONObject("EUR").getDouble("Value") + " руб");
         }
     }
 
@@ -85,7 +82,6 @@ public class Controller {
             }
             bufferedReader.close();
         } catch (Exception e) {
-//            System.out.println("Такой город не был найден!");
             logger.log(Level.INFO,"Такой город не был найден!");
 
         }
