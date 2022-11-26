@@ -2,9 +2,8 @@ package ru.moonshine1l.weather;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
+
 import javafx.scene.text.Text;
 import org.json.JSONObject;
 
@@ -12,7 +11,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -65,7 +63,7 @@ public class Controller {
     }
 
 
-    private static String getUrlContent(String urlAdress) {
+    private String getUrlContent(String urlAdress) {
         StringBuffer content = new StringBuffer();
 
         try {
@@ -82,7 +80,8 @@ public class Controller {
             }
             bufferedReader.close();
         } catch (Exception e) {
-            logger.log(Level.INFO,"Такой город не был найден!");
+
+            this.tempInfo.setText("Такой город не найден");
 
         }
         return content.toString();

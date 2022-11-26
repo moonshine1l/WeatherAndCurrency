@@ -25,7 +25,7 @@ tasks.withType(JavaCompile) {
 
 application {
     mainModule = 'ru.moonshine1l.weather'
-    mainClass = 'ru.moonshine1l.weather.HelloApplication'
+    mainClass = 'ru.moonshine1l.weather.App'
 }
 
 javafx {
@@ -77,6 +77,9 @@ jlink {
         name = 'app'
     }
 }
+
+compileJava.options.encoding = 'UTF-8'
+
 
 jlinkZip {
     group = 'distribution'
